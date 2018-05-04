@@ -19,6 +19,8 @@ android {
         versionCode buildVersionCode()
         versionName VERSION_NAME
         testInstrumentationRunner "com.duckduckgo.app.TestRunner"
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
         archivesBaseName = "duckduckgo-$versionName"
 
         javaCompileOptions {
