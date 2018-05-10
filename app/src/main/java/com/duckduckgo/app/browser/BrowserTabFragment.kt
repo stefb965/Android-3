@@ -339,7 +339,7 @@ class BrowserTabFragment : Fragment(), FindListener {
             // ensures caret sits at the end of the query
             omnibarTextInput.post {
                 omnibarTextInput?.let {
-                    it.setSelection(it.text.length)
+                    it.setSelection(it.text?.length ?: 0)
                 }
             }
             appBarLayout.setExpanded(true, true)
@@ -675,7 +675,7 @@ class BrowserTabFragment : Fragment(), FindListener {
     }
 
     private fun resetTabState() {
-        omnibarTextInput.text.clear()
+        omnibarTextInput.text?.clear()
         viewModel.resetView()
         destroyWebView()
         configureWebView()
