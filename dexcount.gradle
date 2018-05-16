@@ -1,0 +1,8 @@
+apply plugin: 'com.getkeepsafe.dexcount'
+
+dexcount {
+    format = "list"
+    maxTreeDepth = 2
+    orderByMethodCount = true
+    includeTotalMethodCount = true
+}
