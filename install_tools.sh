@@ -6,6 +6,3 @@ yes | sdkmanager --licenses;
 echo "Fetching ndk-bundle. Suppressing output to avoid travis 4MG size limit";
 sdkmanager "ndk-bundle" >/dev/null;
 echo "Fetching ndk-bundle complete";
-sdkmanager "system-images;android-23;default;armeabi-v7a";
-echo no | android create avd --force -n test -t android-23 --abi armeabi-v7a
-emulator -avd test -no-audio -no-window &
