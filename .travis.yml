@@ -6,16 +6,15 @@ android:
     # use the latest revision of Android SDK Tools
     - tools
     - platform-tools
+    - tools
 
     # The SDK version used to compile your project
     - android-27
+    - system-images;android-22;default;x86_64
 
 
 before_install:
   - ./install_tools.sh
-  # Create and start emulator for the script. Meant to race the install task.
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-22;default;armeabi-v7a"
-  - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window &
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -27,8 +26,10 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
+  - echo no | android create avd --force -n test -t android-22 --abi x86_64
+  - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
-  - adb shell input keyevent 82
+  - adb shell input keyevent 82 &
 
 script:
   - ./gradlew build
