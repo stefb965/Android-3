@@ -10,7 +10,7 @@ android:
 
     # The SDK version used to compile your project
     - android-27
-    - system-images;android-22;default;x86_64
+    - sys-img-armeabi-v7a-android-22
 
 
 before_install:
@@ -26,9 +26,10 @@ cache:
     - $HOME/.android/build-cache
 
 before_script:
-  - echo no | android create avd --force -n test -t android-22 --abi x86_64
-  - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
 
 script:
@@ -37,6 +38,11 @@ script:
 
 after_failure:
   - cat /home/travis/build/duckduckgo/Android/app/build/outputs/androidTest-results/connected/*
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=8
+
 
 notifications:
   slack:
