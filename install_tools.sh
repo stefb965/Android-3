@@ -6,3 +6,5 @@ yes | sdkmanager --licenses;
 echo "Fetching ndk-bundle. Suppressing output to avoid travis 4MG size limit";
 sdkmanager "ndk-bundle" >/dev/null;
 echo "Fetching ndk-bundle complete";
+
+sdkmanager --list --verbose || true
