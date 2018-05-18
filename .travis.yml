@@ -10,8 +10,8 @@ android:
 before_install:
   - ./install_tools.sh
 
-  - echo yes | sdkmanager "system-images;android-21;google_apis;x86_64"
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-21;google_apis;x86_64"
+  - echo yes | sdkmanager "system-images;android-24;default;arm64-v8a"
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-24;default;arm64-v8a"
   - $ANDROID_HOME/emulator/emulator -avd test -no-skin -no-audio -no-window -netspeed full -netdelay none &
 
 
