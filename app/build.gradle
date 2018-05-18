@@ -142,7 +142,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
 
-    testImplementation "org.mockito:mockito-core:2.15.0"
+    testImplementation "org.mockito:mockito-core:2.18.3"
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
     testImplementation "junit:junit:4.12"
 
@@ -150,7 +150,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:rules:$androidTestRunner"
     androidTestUtil "com.android.support.test:orchestrator:1.0.2"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:3.0.2"
-    androidTestImplementation "org.mockito:mockito-android:2.15.0"
+    androidTestImplementation "org.mockito:mockito-android:2.18.3"
     androidTestImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
 
 }
