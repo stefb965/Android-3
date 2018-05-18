@@ -143,6 +143,7 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$glide"
 
     testImplementation "org.mockito:mockito-core:2.18.3"
+    testImplementation "net.bytebuddy:byte-buddy:1.8.11"
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
     testImplementation "junit:junit:4.12"
 
