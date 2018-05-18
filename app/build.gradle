@@ -18,6 +18,7 @@ android {
         targetSdkVersion 27
         versionCode buildVersionCode()
         versionName VERSION_NAME
+        multiDexEnabled=true
         testInstrumentationRunner "com.duckduckgo.app.TestRunner"
         archivesBaseName = "duckduckgo-$versionName"
 
