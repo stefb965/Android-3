@@ -10,8 +10,8 @@ android:
 before_install:
   - ./install_tools.sh
 
-  - echo yes | sdkmanager "system-images;android-24;default;armeabi-v7a "
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-24;default;armeabi-v7a "
+  - echo yes | sdkmanager "system-images;android-24;default;armeabi-v7a"
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-24;default;armeabi-v7a"
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -netspeed full -netdelay none &
 
 
