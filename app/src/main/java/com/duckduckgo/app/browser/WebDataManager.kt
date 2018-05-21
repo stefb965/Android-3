@@ -25,23 +25,8 @@ import android.webkit.WebViewDatabase
 
 class WebDataManager(private val host: String) {
 
-    fun clearData(webView: WebView, webDataRemover: WebDataRemover, context: Context) {
-        webView.clearCache(true)
-        webView.clearHistory()
-        webDataRemover.deleteAllData()
-        webView.clearFormData()
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            clearFormData(WebViewDatabase.getInstance(context))
-        }
-    }
-
-    /**
-     * Deprecated and not needed on Oreo or later
-     */
-    @Suppress("DEPRECATION")
-    private fun clearFormData(webViewDatabase: WebViewDatabase) {
-        webViewDatabase.clearFormData()
+    fun clearData(webDataRemover: WebDataRemover, context: Context) {
+        webDataRemover.deleteAllData(context)
     }
 
     fun clearExternalCookies(cookieManager: CookieManager, clearAllCallback: (() -> Unit)) {
@@ -55,13 +40,31 @@ class WebDataManager(private val host: String) {
     }
 }
 
-interface WebDataRemover  {
-    fun deleteAllData()
+interface WebDataRemover {
+    fun deleteAllData(context: Context)
 }
 
-class WebViewDataRemover(private val webStorage: WebStorage) : WebDataRemover {
+class WebViewDataRemover(
+    private val webView: WebView,
+    private val webStorage: WebStorage
+) : WebDataRemover {
 
-    override fun deleteAllData() {
+    override fun deleteAllData(context: Context) {
+        webView.clearCache(true)
+        webView.clearHistory()
         webStorage.deleteAllData()
+        webView.clearFormData()
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+            clearFormData(WebViewDatabase.getInstance(context))
+        }
+    }
+
+    /**
+     * Deprecated and not needed on Oreo or later
+     */
+    @Suppress("DEPRECATION")
+    private fun clearFormData(webViewDatabase: WebViewDatabase) {
+        webViewDatabase.clearFormData()
     }
 }

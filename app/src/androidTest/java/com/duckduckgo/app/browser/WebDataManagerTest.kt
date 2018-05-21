@@ -19,9 +19,7 @@ package com.duckduckgo.app.browser
 import android.support.test.InstrumentationRegistry
 import android.webkit.CookieManager
 import android.webkit.ValueCallback
-import android.webkit.WebView
 import com.nhaarman.mockito_kotlin.*
-import org.junit.Ignore
 import org.junit.Test
 import org.mockito.ArgumentCaptor
 
@@ -31,18 +29,14 @@ class WebDataManagerTest {
 
     private val mockCookieManager: CookieManager = mock()
     private val mockStorage: WebDataRemover = mock()
-    private val mockWebView: WebView = mock()
 
     private val testee = WebDataManager(host)
 
     @Test
-    @Ignore
     fun whenDataClearedThenCacheHistoryAndStorageDataCleared() {
         val context = InstrumentationRegistry.getTargetContext()
-        testee.clearData(mockWebView, mockStorage, context)
-        verify(mockWebView).clearHistory()
-        verify(mockWebView).clearCache(any())
-        verify(mockStorage).deleteAllData()
+        testee.clearData(mockStorage, context)
+        verify(mockStorage).deleteAllData(any())
     }
 
     @Test

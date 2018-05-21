@@ -33,14 +33,15 @@ class FireDialog(context: Context, clearStarted: (() -> Unit), clearComplete: ((
 
     init {
 
-        val dataManager = WebDataManager(Url.HOST)
         val contentView = View.inflate(getContext(), R.layout.sheet_fire_clear_data, null)
 
         setContentView(contentView)
 
+        val dataManager = WebDataManager(Url.HOST)
+
         clearAllOption.setOnClickListener {
             clearStarted()
-            dataManager.clearData(WebView(context), getWebViewDataRemover(), context)
+            dataManager.clearData(getWebViewDataRemover(), context)
             dataManager.clearExternalCookies(CookieManager.getInstance(), clearComplete)
             dismiss()
         }
@@ -51,6 +52,6 @@ class FireDialog(context: Context, clearStarted: (() -> Unit), clearComplete: ((
     }
 
     private fun getWebViewDataRemover(): WebViewDataRemover {
-        return WebViewDataRemover(WebStorage.getInstance())
+        return WebViewDataRemover(WebView(context), WebStorage.getInstance())
     }
 }
