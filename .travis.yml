@@ -30,7 +30,6 @@ before_script:
 
 
 script:
-  - ./gradlew build
   - ./gradlew connectedCheck -Porchestrator=true --info
 
 after_failure:
