@@ -56,7 +56,10 @@ android {
         unitTests.returnDefaultValues = true
 
         if (USE_ORCHESTRATOR) {
+            println "Making use of Android Test Orchestrator"
             execution 'ANDROID_TEST_ORCHESTRATOR'
+        } else {
+            println "Not using Android Test Orchestrator"
         }
     }
 
