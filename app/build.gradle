@@ -7,7 +7,7 @@ apply from: '../versioning.gradle'
 
 ext {
     VERSION_NAME = "5.4.0"
-    USE_ORCHESTRATOR = project.hasProperty('orchestrator') ? project.property('orchestrator') : false
+    USE_ORCHESTRATOR = project.hasProperty('orchestrator') ? Boolean.parseBoolean(project.property('orchestrator')) : false
 }
 
 android {
