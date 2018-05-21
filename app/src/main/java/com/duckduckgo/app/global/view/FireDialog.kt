@@ -24,6 +24,7 @@ import android.webkit.WebStorage
 import android.webkit.WebView
 import com.duckduckgo.app.browser.R
 import com.duckduckgo.app.browser.WebDataManager
+import com.duckduckgo.app.browser.WebViewDataRemover
 import com.duckduckgo.app.global.AppUrl.Url
 import kotlinx.android.synthetic.main.sheet_fire_clear_data.*
 
@@ -39,7 +40,7 @@ class FireDialog(context: Context, clearStarted: (() -> Unit), clearComplete: ((
 
         clearAllOption.setOnClickListener {
             clearStarted()
-            dataManager.clearData(WebView(context), WebStorage.getInstance(), context)
+            dataManager.clearData(WebView(context), getWebViewDataRemover(), context)
             dataManager.clearExternalCookies(CookieManager.getInstance(), clearComplete)
             dismiss()
         }
@@ -47,6 +48,9 @@ class FireDialog(context: Context, clearStarted: (() -> Unit), clearComplete: ((
         cancelOption.setOnClickListener {
             dismiss()
         }
+    }
 
+    private fun getWebViewDataRemover(): WebViewDataRemover {
+        return WebViewDataRemover(WebStorage.getInstance())
     }
 }

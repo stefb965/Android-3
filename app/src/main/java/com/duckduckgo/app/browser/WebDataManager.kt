@@ -25,10 +25,10 @@ import android.webkit.WebViewDatabase
 
 class WebDataManager(private val host: String) {
 
-    fun clearData(webView: WebView, webStorage: WebStorage, context: Context) {
+    fun clearData(webView: WebView, webDataRemover: WebDataRemover, context: Context) {
         webView.clearCache(true)
         webView.clearHistory()
-        webStorage.deleteAllData()
+        webDataRemover.deleteAllData()
         webView.clearFormData()
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
@@ -52,5 +52,16 @@ class WebDataManager(private val host: String) {
             ddgCookie?.forEach { cookieManager.setCookie(host, it.trim()) }
             clearAllCallback()
         }
+    }
+}
+
+interface WebDataRemover  {
+    fun deleteAllData()
+}
+
+class WebViewDataRemover(private val webStorage: WebStorage) : WebDataRemover {
+
+    override fun deleteAllData() {
+        webStorage.deleteAllData()
     }
 }

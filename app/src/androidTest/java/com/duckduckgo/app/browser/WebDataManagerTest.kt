@@ -21,7 +21,6 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.annotation.UiThreadTest
 import android.webkit.CookieManager
 import android.webkit.ValueCallback
-import android.webkit.WebStorage
 import android.webkit.WebView
 import com.nhaarman.mockito_kotlin.*
 import org.junit.Assert.assertTrue
@@ -34,7 +33,7 @@ class WebDataManagerTest {
 
     private val mockCookieManager: CookieManager = mock()
 
-    private val mockStorage: WebStorage = mock()
+    private val mockStorage: WebDataRemover = mock()
 
     private val testee = WebDataManager(host)
 
