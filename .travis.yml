@@ -6,9 +6,6 @@ android:
     - tools
     - platform-tools
     - tools
-    - android-21
-    - android-24
-    - sys-img-armeabi-v7a-addon-google_apis-google-24
 
 before_install:
   - ./install_tools.sh
