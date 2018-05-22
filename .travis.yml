@@ -30,7 +30,7 @@ before_script:
 
 
 script:
-  - ./gradlew connectedCheck -Porchestrator=false --info
+  - ./gradlew connectedCheck -Porchestrator=true --info
 
 after_failure:
   - cat /home/travis/build/duckduckgo/Android/app/build/outputs/androidTest-results/connected/*
