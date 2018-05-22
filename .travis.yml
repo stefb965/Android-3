@@ -5,12 +5,16 @@ android:
     # The SDK version used to compile your project
     - tools
     - platform-tools
+    - build-tools-27.0.3
+    - android-25
+  licenses:
+    - 'android-sdk-license-.+'
 
 before_install:
   - ./install_tools.sh
 
-  - echo yes | sdkmanager "system-images;android-24;google_apis;armeabi-v7a"
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-24;google_apis;armeabi-v7a"
+  - echo yes | sdkmanager "system-images;android-25;google_apis;armeabi-v7a "
+  - echo no | avdmanager create avd --force -n test -k "system-images;android-25;google_apis;armeabi-v7a "
   - $ANDROID_HOME/emulator/emulator -avd test -no-audio -no-window -netspeed full -netdelay none &
 
 
