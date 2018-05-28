@@ -71,7 +71,6 @@ android {
         android.signingConfigs.release.keyAlias = props['key.alias']
         android.signingConfigs.release.keyPassword = props['key.alias.password']
     } else {
-        println "Signing properties not found at ${propertiesPath}, releases will NOT succeed"
         android.buildTypes.release.signingConfig = null
     }
 }
